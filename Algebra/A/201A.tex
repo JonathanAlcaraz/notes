@@ -1,0 +1,546 @@
+\documentclass[twoside]{report}
+
+% Package Import
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage[paperwidth=5.5in,paperheight=7.5in,margin=.5in]{geometry}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{tikz-cd}
+\usepackage{mdframed}
+  \mdfdefinestyle{prf}{
+    topline=false,
+    bottomline=false,
+    rightline=false,
+    innertopmargin=1ex,
+    skipabove=0pt}
+\usepackage{fancyhdr}
+  \setlength{\headheight}{.5in}
+  \setlength{\headsep}{2em}
+  \pagestyle{fancy}
+
+% Shortcut Macros
+\newcommand{\done}{$\blacksquare$}
+\newcommand{\hruleskip}{\vspace{1em}\hrule\vspace{2em}}
+\newcommand{\br}{\centering{ * \quad * \quad *} \\  }
+\newcommand{\Ob}{\textrm{Ob}}
+\newcommand{\Hom}{\textrm{Hom}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\fanC}{\mathscr{C}}
+\newcommand{\fanD}{\mathscr{D}}
+\newcommand{\eps}{\varepsilon}
+
+% Lecture Headers
+\newcounter{Lecture}
+\newcommand{\newLec}[1]{
+  \stepcounter{Lecture}
+  \noindent{\Large\bf Lecture \arabic{Lecture}} \, #1 \hfill  \rule[1ex]{2.5in}{.1pt} \vspace{1em}
+}
+
+% Theorem Stuff
+\newtheoremstyle{myts}
+  {1pt} % Space above
+  {1em} % Space below
+  {} % Body font
+  {0pt} % Indent size
+  {\bf} % Head font
+  {} % headpunc
+  { } % headspace
+  {\thmname{#1}\thmnumber{#2}} % headspec
+\theoremstyle{myts}
+\newcounter{c}[Lecture]
+\newtheorem{dfn}[c]{Definition \arabic{Lecture}.}
+\newtheorem{thm}[c]{Theorem \arabic{Lecture}.}
+\newtheorem{lma}[c]{Lemma \arabic{Lecture}.}
+\newtheorem{cor}[c]{Corollary \arabic{Lecture}.}
+\newtheorem*{epl}{Example}
+\newtheorem*{nte}{Note}
+\newcounter{ex}[Lecture]
+\newtheorem{exc}[ex]{Exercise }
+
+% Proof Environment
+\newenvironment{prf}{
+  \noindent\begin{mdframed}[style=prf]}{\end{mdframed} \vspace{1em}
+}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  {\it Lecture Notes by Jonathan Alcaraz (UCR)} \\
+  
+  \vfill
+  
+  {\Huge Algebra} \\
+  \vspace{1em}
+  {Math 201A} \\
+  {Fall 2016} \\
+
+  \vfill
+  
+  {Based on Lectures by} \\
+  \vspace{1em}
+  {\Large Dr. David Rush} \\
+  {\it University of California, Riverside}
+  
+  \vfill
+
+  {\tiny last updated \today}
+\end{titlepage}
+\setcounter{page}{1}
+
+\lhead[\thepage]{Alcaraz}
+\chead[Algebra]{Algebra}
+\rhead[Fall 2016 (Rush)]{\thepage}
+
+\newLec{23 Sep 2016}
+
+\begin{dfn}
+  A \emph{monoid} is a set together with a binary operation that is associative and has an identity (usually denoted $e$).
+\end{dfn}
+
+\begin{epl}
+  The collection of maps from a set to itself is a monoid with respect to composition.
+\end{epl}
+
+\begin{dfn}
+  An element $x$ of a monoid $G$ is said to be \emph{invertible} if there exists some $y\in G$ such that $xy=yx=e$. It follows that such an element is unique. We call such an element the \emph{inverse} of $x$ and usually denote it by $x^{-1}$.
+\end{dfn}
+
+\begin{dfn}
+  A monoid in which every element is invertible is called a \emph{group}.
+\end{dfn}
+
+\begin{epl}
+  The collection of bijections from a set to itself is a group with respect to compostition.
+\end{epl}
+
+\begin{dfn}
+  A map $f:G_1\to G_2$ of monoids is a \emph{homomorphism} is $f(g_1g_2)=f(g_1)f(g_2)$ and $f(e_1)=e_2$. If $G_1,G_2$ are groups, it suffices to say that $f(xy)=f(x)f(y)$.
+\end{dfn}
+
+\begin{dfn}
+  A bijective homomorphism is called an \emph{isomorphism}. An isomorphism from a group to itself is called an \emph{automorphsim}.
+\end{dfn}
+
+\begin{thm}
+  For any group $G$, there is a set $S$ and an injective homomorphism from $G$ to the group of permutations of $S$.
+\end{thm}
+
+\begin{prf}
+  Let $P(G)$ be the group of permuations of $G$ and define $f:G\to P(G)$ by $f(g)=L_g$ where $L_g(x)=gx$. Note that $L_g$ has an inverse, $L_{g^{-1}}$, and hence is a permutation. Moreover, note that
+  \[
+    L_{g_1g_2}(x) = g_1g_2x = g_1L_{g_2}(x) = L_{g_1}(L_{g_2}(x))
+  \]
+  so $f$ is in fact a homomorphism. To show $f$ is injective, we intend to show it has trivial kernal. Let $f(g)=id_G$. That is $L_g(x)=gx=x$ for any $x\in G$. In particular, if $x=e$, we see $g=e$. \done
+\end{prf}
+
+\begin{dfn}
+  Given a subgroup $H$ of $G$, a \emph{left coset} of $H$ is a subset of $G$ of the form
+  \[
+    aH = \{ ah : h\in H  \}
+  \]
+  for some $a\in G$. One can similarly define a \emph{right coset}.
+\end{dfn}
+
+\begin{nte}
+  Any 2 left cosets of $H$ have the same cardinality.
+\end{nte}
+
+\begin{exc}
+  The set of left cosets of $H$ in $G$ partition $G$.
+\end{exc}
+
+\begin{prf}
+  Note the cosets cover $G$ since $e\in H$, so for any $a\in G$, $a\in aH$. Note that if $b\in aH$, then $bH=aH$. So, by the contrapositive of this statement, the cosets are pairwise disjoint.
+\end{prf}
+
+\begin{dfn}
+  The number of cosets of $H$ in $G$ is called the \emph{index} of $G$ over $H$ and is denoted by $[G:H]$.
+\end{dfn}
+
+\begin{thm}
+  If $H$ is a subgroup of $G$, then
+  \[
+    [G:1] = [H:1][G:H]
+  \]
+  where $1$ denotes the trivial subgroup of $G$.
+\end{thm}
+
+\begin{thm}
+  If $H$ is a subgroup of $G$, the following properties are equivalent:
+  \begin{enumerate} [(i)]
+    \item $xHx^{-1} = H$ for any $x\in G$;
+    \item $xH=Hx$ for any $x\in G$;
+    \item The elementwise product of two right cosets is a right coset.
+    \item H is the kernal of some group homomorphism $f:G\to G'$ for some $G'$.
+  \end{enumerate}
+\end{thm}
+
+\begin{dfn}
+  A subgroup with any of the above properties is said to be \emph{normal}.
+\end{dfn}
+
+\newLec{26 Sep 2016}
+
+\noindent Let us now prove the above theorem.
+
+\begin{prf}
+  (i) $\Rightarrow$ (ii) This implication follows directly from the definition of these sets.
+
+  \noindent
+  (ii) $\Rightarrow$ (iii) We have
+    \[
+      (Hx)(Hy) = H(xH)y=H(Hx)y=(HH)xy=Hxy
+    \]
+
+  \noindent
+  (iii) $\Rightarrow$ (iv) By (iii), $HxHy = Hz$ for some $z\in G$. So the cosets $Hxy$ and $Hz$ have an element $xy = hz$ in common. So $Hxy=Hz$.
+
+  \noindent
+  (iv) $\Rightarrow$ (i) Let $f$ be the homomorphism given by (iv). Notice that for $h\in H$, $f(xhx^{-1})=e$, so $xHx^{-1}\subseteq \ker(f) = H$. Similarly, $H\subseteq xHx^{-1}$.
+\end{prf}
+
+\begin{dfn}
+  Let $H$ be a subgroup of $G$. The \emph{normalizer} of $H$ is
+  \[
+    N_H = \{ x\in G : xHx^{-1} = H \}
+  \]
+  The \emph{centralizer} of a subset $S$ of $G$ is
+  \[
+    \{ x\in G : xhx^{-1} = h\, \forall h\in H \}
+  \]
+  The centralizer of $G$ itself is said to be the \emph{center} of $G$, usually denoted by $Z(G)$.
+\end{dfn}
+
+\begin{thm}
+  Let $H,K$ be subgroups of $G$ with $H\subseteq N_K$. Then
+  \begin{enumerate}[(a)]
+    \item $HK=KH$;
+    \item $HK$ is a subgroup of $G$;
+    \item $K$ is normal in $HK$, $H\cap K$ is normal in $H$, and $H/H\cap K \cong HK/K$.
+  \end{enumerate}
+\end{thm}
+
+\begin{prf}
+  \begin{enumerate}[(a)]
+    \item Since $H\subseteq N_K$, $hKh^{-1} = K$ for $h\in H$. Thus $hK=Kh$ for any $h\in H$. So for $hk\in HK$, $hk = hK = Kh \subseteq KH$. Thus $HK\subseteq KH$. Similarly, $kh\in Kh = hK \subseteq HK$.
+
+    \item Clearly $HK$ contains the identity since $H$ and $K$ do. Moreover, for some $hk\in HK$, $k^{-1}h^{-1}\in KH=HK$ and $k^{-1}h^{-1} hk = hk k^{-1}h^{-1} = e$. It remains to show that $HK$ is closed under its operation. Note that a product of elements of $HK$ would, a priori, be in $HKHK$. By (a),
+    \[
+      HKHK = HHKK = HK
+    \]
+
+    \item Note that $N_K$ is a group containing $H$ and $K$ \emph{(the fact that $N_K$ is a group can be proven with a simple check of the group axioms)}. Hence $HK\subseteq N_K$ and thus $K$ is normal in $HK$.
+
+    Let $\varphi:H\to HK/K$ be the composition of the inclusion $H\to HK$ and the projection $HK \to HK/K$. Then $\varphi$ is a surjective homomorphism. Indeed, each element of \( HK/K \) is of the form \( hkK = hK \). Moreover, the kernal of $\varphi$ is $H\cap K$. So $H\cap K$ is normal in $H$ and $H/H\cap K \cong HK/K$.
+  \end{enumerate}
+\end{prf}
+
+\begin{lma}
+  If \( K\subseteq H \) are subgroups of the finite group $G$, then
+  \[
+    [G:K] = [G:H][H:K]
+  \]
+\end{lma}
+
+\begin{prf}
+  Let \( \{ h_i \} \) be a set of representatives of left cosets of $K$ in $H$ and \( \{ g_j \} \) be a set of representatives of the left cosets of $H$ in $G$. We claim that \( \{ g_ih_j \} \) is a set of representatives of $K$ in $G$. These cover $G$ since
+  \[
+    G = \cup g_i H = \cup g_i h_j K
+  \]
+  Suppose \( g_i h_j K = g_r h_s K \). Then in particular, \( g_i h_j H = g_r h_s H \) and thus \( g_i = g_r \), so \(i=r\). Therefore, \( g_i h_j K = g_i h_s K\) and thus \( h_j K = h_s K\), so \( j = s \). Hence, these cosets are disjoint.
+\end{prf}
+
+\newLec{28 Sep 2016}
+
+\begin{dfn}
+  Let $A$ be a finite set. Denote the \emph{set of permutations} of $A$ by $S_A$ or $P(A)$. Given \(\sigma\in S_A\) we can define an equivalence relation \( \sim_\sigma \) such that \( a\sim_\sigma b\) if \( \sigma^n (a) = b \). The equivalence classes, say $B_1,\ldots,B_k$, of this relation are called the \emph{orbits} of $\sigma$. For $1\leq i \leq k$, define \( \sigma_i : A \to A \) by
+  \[
+    \sigma_i(x) =
+    \begin{cases}
+      \sigma(x) &;\; x\in B_i \\
+      x &;\; \textrm{otherwise}
+    \end{cases}
+  \]
+\end{dfn}
+
+\noindent
+Notice \( \sigma = \sigma_1\sigma_2 \cdots \sigma_k \) and these $\sigma_i$ commute with one another.
+
+\begin{dfn}
+  A permutation \( \sigma\in S_A \) is called a \emph{cycle} if it has at most one orbit of cardinality greater than one. If said orbit has $k$ elements, $\sigma$ is said to be a \emph{$k$-cycle}.
+\end{dfn}
+
+\begin{dfn}
+  Two cycles are said to be \emph{disjoint} if their orbits are disjoint.
+\end{dfn}
+
+\begin{dfn}
+  A \emph{transposition} is a $2$-cycle.
+\end{dfn}
+
+\begin{thm}
+  Every permutation can be  written as a product (composition) of transpositions.
+\end{thm}
+
+\begin{prf}
+  We start by introducing cycle notation. Let \( ( a_1 \: a_2 \: \ldots \: a_k ) \) denote the $k$-cycle that takes \( a_i \mapsto a_{i+1} \) and \( a_k \mapsto a_1 \). This notation makes it clear that
+  \[
+    ( a_1 \: a_2 \: \ldots \: a_k ) = ( a_1 \: a_k )\cdots (a_1 \: a_3 ) (a_1 \: a_2)
+  \]
+  And any permutation is the product of $k$-cycles, we are done.
+\end{prf}
+
+\begin{nte}
+  Let \( \sigma_1 = (a_1 \, \ldots \, a_k ) \), \( \sigma_2 = (b_1 \, \ldots \, b_m ) \) and \( \tau = (a_i \: b_j ) \). Without losing generality, suppose \( i = j = 1 \). Compute:
+  \begin{align*}
+    \tau\sigma_1\sigma_2 &= (a_1 \: b_1 ) (a_1 \, \ldots \, a_k ) (b_1 \, \ldots \, b_m) \\
+      &= (b_1 \, \ldots \, b_m \: a_1 \, \ldots \, a_k )
+  \end{align*}
+  Consider \( \sigma = (a_1 \: a_j ) (a_1 \, \ldots \, a_k \) Then \( \sigma = (a_1 \, \ldots \, a_{j-1} ) (a_j \:  a_{j+1}\, \ldots \, a_k ) \). So if $i$ and $j$ are in the same orbit of $\sigma$, then the cycles of $\sigma$ are the same except that the cycle containing $i$ and $j$ is broken into two cycles.
+\end{nte}
+
+\newLec{30 Sep 2016}
+
+\begin{dfn}
+  We say a permutation is \emph{even} (resp. \emph{odd}) if it can be written as a product of an even (resp. odd) number of transpositions.
+\end{dfn}
+
+\begin{thm}
+  No permutation is both even and odd.
+\end{thm}
+
+\begin{dfn}
+  The group of even permutations of \( \{ 1 , \ldots , n \} \) is called the \emph{alternating group} denoted $A_n$.
+\end{dfn}
+
+\begin{lma}
+  $A_n$ is generated by $3$-cycles.
+\end{lma}
+
+\begin{prf}
+  We will consider the case where there are two $2$-cycles and this can be extended to any even permutation. If the $2$ cycles are disjoint, 
+  \[
+    ( a \: b ) ( c \: d ) = ( a \: c \: b ) ( a \: c \: d )
+  \]
+  otherwise,
+  \[
+    (a \: b ) ( a \: c ) = ( a \: c \: d)
+  \]
+  So any even permutation can be written as a product of pairs of transpositions and each pair can be written as a product of $3$-cycles, as desired.
+\end{prf}
+
+\begin{lma}
+  If \( n \geq 5 \), then any two $3$-cycles in $S_n$ are conjugate by an element of $A_n$.
+\end{lma}
+
+\begin{prf}
+  Let \( \sigma_1 = (a \: b \: c ) \) and \( \sigma_2 = ( a \: b \: c ) \). Let \( \gamma \in S_n \) map \(a\mapsto e\), \(b\mapsto f\), \(c\mapsto g\). Note,
+  \[
+    \gamma \sigma_1 \gamma^{-1} = \gamma ( a \: b \: c ) \gamma^{-1} = ( e \: f \: g ) = \sigma_2
+  \]
+  If $\gamma$ is even, we are done. Otherwise, choose distinct \( r,s \in \{ 1,2, \ldots , n \}\backslash \{ a,b,c\} \). Such $r,s$ exist since $n\geq 5$. Let \( \tau = ( r \: s ) \). Since $\tau$ and $\sigma$ are disjoint, they commute, hence
+  \begin{align*}
+    (\gamma\tau) \sigma_1 (\gamma\tau)^{-1} &= (\gamma\tau) \sigma_1 (\tau^{-1}\gamma^{-1}) \\
+      &= \gamma (\tau\sigma_1) \tau^{-1}\gamma^{-1} \\
+      &= \gamma (\sigma_1\tau) \tau^{-1}\gamma^{-1} \\
+      &= \gamma \sigma_1 \gamma^{-1} = \sigma_2
+  \end{align*}
+  and \(\gamma\tau\) is even as desired.
+\end{prf}
+
+\begin{cor}
+  If a normal subgroup $N$ of $A_n$ contains a 3-cycle, then $N$ contains all 3-cycles of $S_n$.
+\end{cor}
+
+\begin{thm}
+  $A_n$ is simple if and only if \( n \geq 5 \).
+\end{thm}
+
+\begin{prf}
+  \emph{The forward direction can be done ad hoc for $n < 5$.} \\
+  Let $N$ be a normal subgroup of $A_n$. \\
+  {\bf Case 1:} $N$ contains a 3-cycle. By the above corollary, it contains all 3-cycles, so since $A_n$ is genereated by 3-cycles, $N=A_n$. We now wish to reduce the nontrivial cases to this case. That is, we wish to show that $N$ contains a 3-cycle in each of the following cases. \\
+  {\bf Case 2:} $N$ contains an element \( \sigma = (a_1 \: a_2 \, \ldots \, a_r ) \tau \) where $r\geq 4$ and $\tau$ is a product of cycles which are disjoint from \( ( a_1 \, \ldots \, a_r ) \). Let \( \delta = ( a_1 \: a_2 \: a_3 ) \). Then \( \delta^{-1} = ( a_1 \: a_2 \: a_3 ) \). Then \( \sigma^{-1} (\delta \sigma \delta^{-1} ) \in N \). But
+  \begin{align*}
+    \sigma^{-1} (\delta \sigma \delta^{-1} ) &= [\tau^{-1} ( a_r \, \ldots \, a_1 ) ] (a_1 \: a_2 \: a_3 ) [ (a_1 \, \ldots \, a_r ) \tau ] ( a_1 \: a_2 \: a_3 ) \\
+      &= ( a_1 \: a_2 \: a_3 )
+  \end{align*}
+  as desired.
+\end{prf}
+
+\newLec{3 Oct 2016}
+
+\begin{prf}
+  {\bf Case 3:} $N$ contains \( \sigma = ( a_1 \: a_2 \: a_3 ) ( a_4 \: a_5 \: a_6) \tau \) where $\tau$ is a product of disjoint cycles which are disjoint from \( ( a_1 \: a_2 \: a_3 ) \) and \( ( a_4 \: a_5 \: a_6 ) \). Let \( \delta = ( a_1 \: a_2 \: a_4 ) \), so \( \delta^{-1} = ( a_1 \: a_4 \: a_2 ) \). Then, \(\sigma^{-1} ( \delta\sigma\delta^{-1} ) \in N \). However, \( \sigma^{-1} ( \delta\sigma\delta^{-1} ) = ( a_1 \: a_4 \: a_2 \: a_6 \: a_3 ) \), so we are done by case 2. \\
+  {\bf Case 4:} $N$ contains \( \sigma  = ( a_1 \: a_2 \: a_3 ) \) where $\tau$ is product of disjoint 2-cycles which are disjoint from \( ( a_1 \: a_2 \: a_3 ) \). Then \( \sigma^2 \in N \). However, since $\tau$ is a product of disjoint 2-cycles, \( \tau^2 = ( ) \), so
+  \[
+    \sigma^2 = ( a_1 \: a_2 \: a_3 )^2 \tau^2 = ( a_1 \: a_2 \: a_3 )^2 = ( a_1 \: a_3 \: a_2 )
+  \]
+  as desired. \\
+  {\bf Case 5:} Every \( \sigma \in N \) is a product of an even number of disjoint 2-cycles. Say \( \sigma = ( a_1 \: a_2 ) ( a_3 \: a_4 ) \tau \) where $\tau$ is a product of an even number of 2-cycles which are disjoint from \( ( a_1 \: a_2 ) \) and \( ( a_3 \: a_4 ) \). If \( \delta = ( a_1 \: a_2 \: a_3 ) \), then \( \sigma^{-1} (\delta\sigma\delta^{-1}) = ( a_1 \: a_3 ) ( a_ 2 \: a_4 ) \). Since \( n \geq 5 \), we can choose \( b \in \{ 1,\ldots,n \} \backslash \{ a_1,a_2,a_3,a_4 \} \). Then \( \xi = ( a_1 \: a_3 \: b ) \in A_n \) and \( \gamma = ( a_1 \: a_3 ) ( a_2 \: a_3 ) \in N \). Further, \( \gamma ( \xi\gamma\xi^{-1} ) \in N \) and \( \gamma ( \xi\gamma\xi^{-1} ) = (a_1 \: a_3 \: b ) \).
+\end{prf}
+
+\br
+
+\begin{dfn}
+  A \emph{category} $\fanC$ is a class of objects, denoted \( \Ob(\fanC) \), and for each \( A,B \in \Ob(\fanC) \) a set \( \Hom_\fanC (A,B) \) of morphisms. For each \( A,B,C \in \Ob(\fanC) \), there is a binary operation \( \Hom_\fanC (A,B) \times \Hom_\fanC (B,C ) \to \Hom_\fanC (A,C) \) (where we write the image of \( (f,g) \) by \( g \circ f \)) such that
+  \begin{enumerate}[(1)]
+    \item If \(A\neq A' \) or \( B \neq B' \), then \( \Hom_\fanC (A,B) \cap \Hom_\fanC (A',B') = \emptyset \)
+    \item The binary operation \( \circ \) is associative.
+    \item For each \( A\in\Ob(\fanC) \), there is and element \( 1_A \in \Hom_\fanC (A,A) \) such that \( 1_A \circ g = g \) and \( f \circ 1_A = f \) for \( g\in \Hom_\fanC (B,A) \) and \( f \in \Hom_\fanC ( A, B ) \).
+  \end{enumerate}
+\end{dfn}
+
+\newLec{5 Oct 2016}
+
+\begin{epl} Some common examples of categories.
+  \begin{itemize}
+    \item \(Set\) is the category of sets where the morphisms are maps.
+    \item \(Grp\) is the category of groups with homomorphisms.
+    \item \(Ab\) is the category of abelian groups with homomorphisms.
+    \item \(Rng\) is category of rings category of rings with ring homomorphisms.
+    \item \(Top\) is the category of topological spaces with continuous maps.
+    \item \(HTop\) is the category of topoligical spaces whose morphisms are homotopy classes of continuous maps.
+  \end{itemize}
+\end{epl}
+
+\begin{dfn}
+  If $\fanC$ and $\fanD$ are categories, a \emph{covariant functor} \( F : \fanC \to \fanD \) is a map \( F : \Ob(\fanC) \to \Ob (\fanD) \) and for each \( A, B \in \Ob(\fanC) \), we have a map \( F_{AB} : \Hom_\fanC(A,B) \to \Hom_\fanD(F(A), F(B) ) \) such that
+  \begin{enumerate}[(1)]
+    \item If \( f\in \Hom_\fanC(A,B) \) and \( g\in \Hom_\fanC (B,C) \) then \( F(g\circ f) = F(g) \circ F(f) \).
+    \item \( F(1_A) = 1_{F(A)} \).
+  \end{enumerate}
+\end{dfn}
+
+\begin{dfn}
+  A \emph{contravariant functor} from $\fanC$ to $\fanD$ is a map \( F: \Ob(\fanC) \to \Ob(\fanD) \) and for each \( A, B \in \Ob(\fanC) \), we have a map \( F_{AB} : \Hom_\fanC(A,B) \to \Hom_\fanD(F(B), F(A) ) \) such that
+  \begin{enumerate}[(1)]
+    \item If \( f\in \Hom_\fanC(A,B) \) and \( g\in \Hom_\fanC (B,C) \) then \( F(g\circ f) = F(f) \circ F(g) \).
+    \item \( F(1_A) = 1_{F(A)} \).
+  \end{enumerate}
+\end{dfn}
+
+\begin{dfn}
+  In a category $\fanC$, \( A\in \Ob(\fanC) \) is said to be an \emph{initial object} in $\fanC$ if for each \( B\in \Ob(\fanC) \), there is a unique morphism \( f \in \Hom_\fanC (A,B) \).
+\end{dfn}
+
+\newLec{7 Oct 2016}
+
+\begin{dfn}
+  \( A\in \Ob(\fanC) \) is a \emph{terminal object} in $\fanC$ if for each \( B\in\Ob(\fanC) \) there is a unique morphism \( f\in\Hom_\fanC(A,B) \).
+\end{dfn}
+
+\begin{dfn}
+  Let \( \{ A_i \}_{ i\in I} \) be a family of objects in the category $\fanC$. Then a product for \( \{ A_i \}_{ i\in I} \) is an object $P$ together with a family of morphisms \( \{ \pi_i \in \Hom (P, A_i) \} \) such that if \( \{ g_i \in \Hom_\fanC(H,A_i) \} \) is any family of morphisms, then there exists a unique \( g\in \Hom_\fanC (H,P) \) such that \( \pi_i \circ g = g_i \) for every \(i\in I\).
+\end{dfn}
+
+\begin{nte}
+  Given a family of objects \( \{ X_i \}_{i\in I} \) in $\fanC$, we can define a category $\fanD$ whose objects are pairs \( \left( A, \{ a_i \in\Hom_\fanC(A,X_i) \}_{i\in I} \right) \). Say $A$ with \( \{ a_i \} \) and $B$ with \( \{ b_i \} \) are objects in this category, a morphism from the former to the latter would be completely determined by a morphism \(f:A\to B\) such that \( a_i = b_i \circ f \) for all $i$. The product of \(\{ X_i \} \) can be equivalently defined as the terminal object of $\fanD$.
+\end{nte}
+
+\begin{thm}
+  Products exists in $Grp$.
+\end{thm}
+
+\begin{prf}
+  Let \( \{ A_i \}_{i\in I} \) be a family of groups and $P$ be their Cartesian product. More precisely, an element of $P$ is and $I$-tuple whose $i$th coordinate is an element of $A_i$. Denote the $i$th coordinate of \( x\in P \) by \(x_i\). Notice $P$ is a group with coordinate-wise operation, that is, the $i$th coordinate of $xy$ is $x_iy_i$. Let \( \{\pi_i\}_{i\in I} \) be the projection maps on $P$, i.e \( \pi_i(x) = x_i \). We claim that $P$ with \(\{\pi_i\}\) is a product of $Grp$. Let $G$ be some group and \(\{g_i:G\to A_i\}\) be a family of morphisms in $Grp$. Define \(g : G\to P\)  by \( g(x)_i = g_i(x) \). Indeed, \( \pi_i \circ g = g_i \) by definition. Moreover, $g$ is unique since any other morphism would not have this property.
+\end{prf}
+
+\newLec{10 Oct 2016}
+
+\begin{dfn}
+  If $S$ is a subset of a group (respectively monoid) $G$, then the \emph{subgroup} (respectively \emph{submonoid}) of $G$ \emph{generated by $S$} is the intersection of all subgroups (respectively submonoids) of $G$ containing $S$.
+\end{dfn}
+
+\begin{nte}
+  The submonoid of a monoid $G$ generated by \( S \subseteq G \) consists of the set of all finite products of elements of $S$ where the empty product is the identity. Further, if $G$  is a group, then the subgroup of $G$ generated by $S$ is the submonoid of $G$ generated by \( S \bigcup S^{-1} \) where $S^{-1}$ is the set of inverses of $S$.
+\end{nte}
+
+\begin{nte}
+  If $S$ is a subset of a group (or monoid) $G$ which generates $G$ and \( f : S \to H \) is a map into a group (or monoid) $H$, then there exists at most one homomorphism \( \overline{f} : G \to H \) such that \(\overline{f}|_S = f \). In short, a group (or monoid) homomorphism is completely determined by where it sends the set of generators.
+\end{nte}
+
+\begin{dfn}
+  Let $S$ be a set . A \emph{free group} on $S$ is a group $G$ together with a map \( \lambda : S \to G \) such that if $g$ is a map on $S$ into a group $H$, then there is a unique homomorphism \( \overline{g} : G \to H \) such that \( \overline{g} \circ \lambda = g \).
+\end{dfn}
+
+\begin{nte}
+  We can generalize this notion to any concrete category (that is, a category whose objects are sets). A free group is simply a free object in $Grp$.
+\end{nte}
+
+\begin{dfn}
+  Let $\fanC$ be a concrete category, $X$ be a set, $A$ an object in $\fanC$, and \( i: X \to A \) a map between sets. We say $A$ together with $i$ is a \emph{free object} in $\fanC$ if for any object $B$ in $\fanC$ and map \( f : X \to B \) between sets, there is a unique morphism \(g\in\Hom_\fanC(A,B)\) such that \( g \circ i = f \).
+\end{dfn}
+
+\begin{nte}
+  This property of free objects is sometimes abbreviated by simply drawing the following diagram:
+  \begin{center}
+  \begin{tikzcd}
+    X \ar[r, "i"] \ar[rd, "f"] & A \ar[d, dashed, "g"] \\
+      & B
+  \end{tikzcd}
+  \end{center}
+  and saying it \emph{commutes} which in general means that all paths between two objects are equivalent.
+\end{nte}
+
+\begin{thm}
+  Free monoids exist.
+\end{thm}
+
+\begin{prf}
+  Let $S$ be a set. Define \( M(S) := \{ (s_1, \ldots , s_n ) | n\geq 0, s_i\in S \} \). $M(S)$ is a monoid with concatenation and identity $ ( \, ) $. We have the canonical injection \( \varphi : S \to M(S) \) defined by \( \varphi(s) = (s) \). Given a map $f$ from $S$ to some monoid $H$, define \( \overline{f}:M(S)\to H \) by \( \overline{f}(s_1, \ldots , s_n ) = f(s_1) \cdots f(s_n) \). One can check that the respective diagram commutes.
+\end{prf}
+
+\begin{thm}
+  Free groups exist.
+\end{thm}
+
+\begin{prf}
+  Let $S$ be a set and \(\overline{S}\) be a set disjoint from $S$ such that there is a bijection from $S$ to $\overline{S}$. Given \(s\in S\), denote its image via this bijection by \(s^{-1}\). We say an element \(  w \in M(S\cup\overline{S}) \) is of the form
+  \[
+    w = s_1^{\eps_1} \ldots s_k^{\eps_k}
+  \]
+  where \( s_i \in S \) and \( \eps_i = \pm 1 \) and we say \( w' \in M(S\cup\overline{S}) \) is \emph{obtained} from $w$ if \(s_i = s_{i+1}\) and \( \eps_i = -\eps_{i+1} \) and
+  \[
+    w' = s_1^{\eps_1} \ldots s_{i-1}^{\eps_{i-1}} \, s_{i+2}^{\eps_{i+2}} \ldots s_k^{\eps_k}
+  \]
+  We call this process elementary reduction and we say $w$ is a \emph{reduced word} if \( s_i = s_{i+1} \) implies \( \eps_i = \eps_{i+1} \) for all $i$.
+
+  Define an equivalence relation $\sim$ by \( w\sim w' \) meaning there is a sequence of words in \( M(S\cup\overline{S}) \) \( w = w_1, w_2 , \ldots w_{n-1}, w_n = w' \) such that either $w_i$ is obtained from $w_{i+1}$ for all $i$ or $w_{i+1}$ is obtained from $w_i$ for all $i$. This is indeed an equivalence relation on \(M(S\cup\overline{S})\). Moreover, if \( w_1 \sim w_1' \) and \( w_2 \sim w_2' \), then \( w_1 w_2 \sim w_1'w_2' \). Hence the multiplication (concatenation) on \(M(S\cup\overline{S})\) induces multiplication on \(M(S\cup\overline{S})/\sim\) and \(M(S\cup\overline{S})/\sim\) is a group. So far, we have the following sequence of maps:
+  \begin{center}
+    \begin{tikzcd}
+      S \ar[r] & S\cup\overline{S} \ar[r] & M(S\cup\overline{S}) \ar[r] & M(S\cup\overline{S})/\sim
+    \end{tikzcd}
+  \end{center}
+  Suppose we are given a map \( f: S\to H \) for some group $H$. Define \( f' : S\cup\overline{S} \to H \) by \(f'(s^{\pm 1}) = f(s)^{\pm 1}\). Let \(f'' : M(S\cup\overline{S}) \to H \) be the unique map given by $M(S\cup\overline{S})$ being the free monoid on $S\cup\overline{S}$ and let $g$ be the map induced by $f''$ on $M(S\cup\overline{S})/\sim$. One can check that the following diagram commutes:
+  \begin{center}
+    \begin{tikzcd}
+      S \ar[r] \ar[drr, bend right=10, "f"] & S\cup\overline{S} \ar[r] \ar[dr, bend left=5, "f'"] & M(S\cup\overline{S}) \ar[r] \ar[d, "f''"] & M(S\cup\overline{S})/\sim \ar[dl, dashed, "g"] \\
+      & & H &
+    \end{tikzcd}
+  \end{center}
+\end{prf}
+
+\newLec{12 Oct 2016}
+
+\begin{nte}
+  We've shown that a free group is a set equivalence classes \( M( S \cup \overline{S} )/ \sim \)
+\end{nte}
+
+\begin{thm}
+  Each equivalence class of \( M(X\cup\overline{X}) / \sim \) contains a unique reduced word.
+\end{thm}
+
+\begin{prf}
+  Let $S$ be the set of reduced words in $M(S\cup\overline{S})$ and $P(S)$ be the set of permutations of $S$.
+\end{prf}
+
+
+
+\end{document}
