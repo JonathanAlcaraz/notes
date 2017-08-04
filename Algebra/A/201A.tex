@@ -136,7 +136,7 @@
   \[
     L_{g_1g_2}(x) = g_1g_2x = g_1L_{g_2}(x) = L_{g_1}(L_{g_2}(x))
   \]
-  so $f$ is in fact a homomorphism. To show $f$ is injective, we intend to show it has trivial kernal. Let $f(g)=id_G$. That is $L_g(x)=gx=x$ for any $x\in G$. In particular, if $x=e$, we see $g=e$. \done
+  so $f$ is in fact a homomorphism. To show $f$ is injective, we intend to show it has trivial kernel. Let $f(g)=id_G$. That is $L_g(x)=gx=x$ for any $x\in G$. In particular, if $x=e$, we see $g=e$. \done
 \end{prf}
 
 \begin{dfn}
@@ -177,7 +177,7 @@
     \item $xHx^{-1} = H$ for any $x\in G$;
     \item $xH=Hx$ for any $x\in G$;
     \item The elementwise product of two right cosets is a right coset.
-    \item H is the kernal of some group homomorphism $f:G\to G'$ for some $G'$.
+    \item H is the kernel of some group homomorphism $f:G\to G'$ for some $G'$.
   \end{enumerate}
 \end{thm}
 
@@ -191,7 +191,6 @@
 
 \begin{prf}
   (i) $\Rightarrow$ (ii) This implication follows directly from the definition of these sets.
-
   \noindent
   (ii) $\Rightarrow$ (iii) We have
     \[
@@ -237,7 +236,7 @@
 
     \item Note that $N_K$ is a group containing $H$ and $K$ \emph{(the fact that $N_K$ is a group can be proven with a simple check of the group axioms)}. Hence $HK\subseteq N_K$ and thus $K$ is normal in $HK$.
 
-    Let $\varphi:H\to HK/K$ be the composition of the inclusion $H\to HK$ and the projection $HK \to HK/K$. Then $\varphi$ is a surjective homomorphism. Indeed, each element of \( HK/K \) is of the form \( hkK = hK \). Moreover, the kernal of $\varphi$ is $H\cap K$. So $H\cap K$ is normal in $H$ and $H/H\cap K \cong HK/K$.
+    Let $\varphi:H\to HK/K$ be the composition of the inclusion $H\to HK$ and the projection $HK \to HK/K$. Then $\varphi$ is a surjective homomorphism. Indeed, each element of \( HK/K \) is of the form \( hkK = hK \). Moreover, the kernel of $\varphi$ is $H\cap K$. So $H\cap K$ is normal in $H$ and $H/H\cap K \cong HK/K$.
   \end{enumerate}
 \end{prf}
 
@@ -537,6 +536,7 @@ Notice \( \sigma = \sigma_1\sigma_2 \cdots \sigma_k \) and these $\sigma_i$ comm
   Each equivalence class of \( M(X\cup\overline{X}) / \sim \) contains a unique reduced word.
 \end{thm}
 
+%=====NOT-DONE==============
 \begin{prf}
   Let $S$ be the set of reduced words in $M(S\cup\overline{S})$ and $P(S)$ be the set of permutations of $S$.
 \end{prf}
@@ -547,6 +547,7 @@ Notice \( \sigma = \sigma_1\sigma_2 \cdots \sigma_k \) and these $\sigma_i$ comm
     \item The inclusion \( X \to G \) is a free group on $X$.
     \item $X$ generates $G$.
     \item $X$ generates $G$ and if $w$ is a non-trivial reduced word in $G$, then $w\neq1$.
+    \item Each element of $G$ can be written uniquely as \( x_1^{n_1} \cdots x_k^{n_k} \), \(n_i\in\Z\backslash\{0\}\) such that \( x_i \neq x_{i+1} \) for each $i$.
   \end{enumerate}
 \end{thm}
 
