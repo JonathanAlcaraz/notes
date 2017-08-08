@@ -620,6 +620,29 @@ Notice \( \sigma = \sigma_1\sigma_2 \cdots \sigma_k \) and these $\sigma_i$ comm
       id_{G_\beta} &\quad \textrm{if } \alpha = \beta
     \end{cases}
   \]
+  By definition of coproduct, there exists a unique morphism $f$ such that the following diagram commutes:
+  \begin{center}
+    \begin{tikzcd}
+      G_\beta \ar[r, "\lambda_\beta"] \ar[dr, "f_\beta"] & G \ar[d, dashed, "f"] \\
+        & G_\alpha
+    \end{tikzcd}
+  \end{center}
+  Taking \( \alpha = \beta \), we get \( f \circ \lambda_\beta = id_{G_\beta} \). In other words, $\lambda_\beta$ has a left inverse, so $\lambda_\beta$ is injective.
+\end{prf}
+
+\begin{lma}
+  If \(\{X_i\}\) is a pairwise disjoint family of sets, then the inclusions \( \{ \iota_i : F(X_i) \to F(\cup X_i) \} \) are a coproduct in 
+\end{lma}
+
+\begin{prf}
+  \begin{minipage}[t][7em][c]{.35\textwidth}
+    \begin{tikzcd}
+      X_i \ar[r, "r_i"] \ar[d, "s_i"]  & \bigcup X_i \ar[d, "s"] \ar[ddl, dashed, "g'"' near start] \\
+      F(X_i) \ar[r, crossing over, "\iota_i"] \ar[d, "g_i"] & F(\bigcup X_i) \ar[dl, bend left=5, "g"] & \\
+      H &
+    \end{tikzcd}
+  \end{minipage}
+  The maps \(g_i\circ s_i\) induce a map 
 \end{prf}
 
 \end{document}
