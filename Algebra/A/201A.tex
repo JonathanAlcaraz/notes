@@ -401,12 +401,12 @@ Notice \( \sigma = \sigma_1\sigma_2 \cdots \sigma_k \) and these $\sigma_i$ comm
 
 \begin{epl} Some common examples of categories.
   \begin{itemize}
-    \item \(Set\) is the category of sets where the morphisms are maps.
-    \item \(Grp\) is the category of groups with homomorphisms.
-    \item \(Ab\) is the category of abelian groups with homomorphisms.
-    \item \(Rng\) is category of rings category of rings with ring homomorphisms.
-    \item \(Top\) is the category of topological spaces with continuous maps.
-    \item \(HTop\) is the category of topoligical spaces whose morphisms are homotopy classes of continuous maps.
+    \item \cat{Set} is the category of sets where the morphisms are maps.
+    \item \cat{Grp} is the category of groups with homomorphisms.
+    \item \cat{Ab} is the category of abelian groups with homomorphisms.
+    \item \cat{Rng} is category of rings category of rings with ring homomorphisms.
+    \item \cat{Top} is the category of topological spaces with continuous maps.
+    \item \cat{HTop} is the category of topoligical spaces whose morphisms are homotopy classes of continuous maps.
   \end{itemize}
 \end{epl}
 
@@ -631,18 +631,45 @@ Notice \( \sigma = \sigma_1\sigma_2 \cdots \sigma_k \) and these $\sigma_i$ comm
 \end{prf}
 
 \begin{lma}
-  If \(\{X_i\}\) is a pairwise disjoint family of sets, then the inclusions \( \{ \iota_i : F(X_i) \to F(\cup X_i) \} \) are a coproduct in 
+  If \(\{X_i\}\) is a pairwise disjoint family of sets, then the inclusions \( \{ \iota_i : F(X_i) \to F(\cup X_i) \} \) are a coproduct in \cat{Grp}. 
 \end{lma}
 
 \begin{prf}
-  \begin{minipage}[t][7em][c]{.35\textwidth}
+  \begin{center}
+    \begin{tikzcd}
+      X_i \ar[r, "r_i"] \ar[d, "s_i"]  & \bigcup X_i \ar[d, "s"]  \\
+      F(X_i) \ar[r, crossing over, hook, "\iota_i"] \ar[d, "g_i"] & F(\bigcup X_i) \\
+      H & 
+    \end{tikzcd}\
+  \end{center}
+  Consider this diagram where $r_i$ are the inclusions into the union and $s_i$ and $s$ are the respective maps given by the freeness of \(F(X_i)\) and \(F(\bigcup X_i)\). The maps \(g_i\circ s_i\) induce a map \(g': \bigcup X_i \to H \) such that the following diagram commutes:
+  \begin{center}
     \begin{tikzcd}
       X_i \ar[r, "r_i"] \ar[d, "s_i"]  & \bigcup X_i \ar[d, "s"] \ar[ddl, dashed, "g'"' near start] \\
-      F(X_i) \ar[r, crossing over, "\iota_i"] \ar[d, "g_i"] & F(\bigcup X_i) \ar[dl, bend left=5, "g"] & \\
+      F(X_i) \ar[r, crossing over, hook, "\iota_i"] \ar[d, "g_i"] & F(\bigcup X_i) & \\
       H &
     \end{tikzcd}
-  \end{minipage}
-  The maps \(g_i\circ s_i\) induce a map 
+  \end{center}
+  Since \(F(\bigcup X_i)\) is free on \(\bigcup X_i\), $g'$ induces a unique morphism \(g: F(\bigcup X_i) \to H\) such that \(g\circ s = g'\) Moreover, \(g\circ \iota_i = g_i\) due again to the freeness of \(F(X_i)\) and \(F(\bigcup X_i\) on \(X_i\) and \(\bigcup X_i\) respectively. So the desired diagram commutes:
+  \begin{center}
+    \begin{tikzcd}
+      X_i \ar[r, "r_i"] \ar[d, "s_i"]  & \bigcup X_i \ar[d, "s"] \ar[ddl, dashed, "g'"' near start] \\
+      F(X_i) \ar[r, crossing over, hook, "\iota_i"] \ar[d, "g_i"] & F(\bigcup X_i) \ar[dl, bend left=5, "g"] & \\
+      H &
+    \end{tikzcd}
+  \end{center}
 \end{prf}
+
+\begin{nte}
+  A special cacse of the above statement is that \(F(X)=F\left(\bigcup \{x\}\right)\) is a coproduct of the family \( \left\{ F(\{x\})\right\}\). Thus the existence of free groups follows from the existence of coproducts in \cat{Grp}.
+\end{nte}
+
+\begin{nte}
+  Let \(S\) be a generating set of the group $G$. Then there is a homomorphism \(g:F(S) \to G \) the following commutes:
+  \begin{center}
+    [INSERT CD HERE]
+  \end{center}
+  Moreover, $g$ is surjective since \(g(S)\) generates $G$. Thus \(G=F(S)/H\) where \(H=\ker(g) \). If $T$ is a subset of $H$ such that $H$ is smallest normal subgroup of \(F(S)\)  containing $T$, then \( \langle S | T \rangle \) is called a \emph{presentation} of $G$. 
+\end{nte}
 
 \end{document}
