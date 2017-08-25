@@ -667,9 +667,14 @@ Notice \( \sigma = \sigma_1\sigma_2 \cdots \sigma_k \) and these $\sigma_i$ comm
 \begin{nte}
   Let \(S\) be a generating set of the group $G$. Then there is a homomorphism \(g:F(S) \to G \) the following commutes:
   \begin{center}
-    [INSERT CD HERE]
+    \begin{tikzcd}
+      S \ar[r, "\lambda"] \ar[dr, "\iota"]  & F(S) \ar[d, dashed, "g"] \\
+       & G
+    \end{tikzcd}
   \end{center}
-  Moreover, $g$ is surjective since \(g(S)\) generates $G$. Thus \(G=F(S)/H\) where \(H=\ker(g) \). If $T$ is a subset of $H$ such that $H$ is smallest normal subgroup of \(F(S)\)  containing $T$, then \( \langle S | T \rangle \) is called a \emph{presentation} of $G$. 
+  Moreover, $g$ is surjective since \(g(S)\) generates $G$. Thus \(G\cong F(S)/H\) where \(H= \ker(g) \). If $T$ is a generating subset of $H$, then \( \langle S | T \rangle \) is called a \emph{presentation} of $G$.
 \end{nte}
+
+\newLec{17 Oct 2017}
 
 \end{document}
