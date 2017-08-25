@@ -661,7 +661,7 @@ Notice \( \sigma = \sigma_1\sigma_2 \cdots \sigma_k \) and these $\sigma_i$ comm
 \end{prf}
 
 \begin{nte}
-  A special cacse of the above statement is that \(F(X)=F\left(\bigcup \{x\}\right)\) is a coproduct of the family \( \left\{ F(\{x\})\right\}\). Thus the existence of free groups follows from the existence of coproducts in \cat{Grp}.
+  A special case of the above statement is that \(F(X)=F\left(\bigcup \{x\}\right)\) is a coproduct of the family \( \left\{ F(\{x\})\right\}\). Thus the existence of free groups follows from the existence of coproducts in \cat{Grp}.
 \end{nte}
 
 \begin{nte}
@@ -676,5 +676,13 @@ Notice \( \sigma = \sigma_1\sigma_2 \cdots \sigma_k \) and these $\sigma_i$ comm
 \end{nte}
 
 \newLec{17 Oct 2017}
+
+\begin{thm}
+  Any family \( \{ G_\alpha \} \) of groups has a coprodict in \cat{Grp}.
+\end{thm}
+
+\begin{prf}
+  Suppose \(G_\alpha\) has a presentation \(\langle X_\alpha | R_\alpha \rangle \). Recall that a presentation \(\langle X | R \rangle \) consists of a set $X$, a surjective homomorphism \( \varphi : F(X) \to G \) and a set $R$ of relations of $G$ (ie a generating set of \(\ker(\varphi)\)). We can assume without losing generality that \(X_\alpha \cap X_\beta = \emptyset\) for \(\alpha \neq \beta \). Let \( G = \langle \cup X_\alpha | \cup R_\alpha \rangle \) where \( F(\cup X_\alpha ) \to G \) is the canonical map. By von Dyck's Theorem (Hungerford p67), the inclusion \( X_\alpha \to \cup X_\alpha \) induces a homomorphism \(\iota_\alpha : G_\alpha \to G \). We claim that \(\{ \iota_\alpha \}\) is a coproduct. Let \(\{ f_\alpha : G_\alpha \to H \}\) be a family of homomorphisms. Now, \(f_\alpha\) induces a homomorphisms \( \psi_\alpha : F(X_\alpha) \to H \) such that \( \langle R_\alpha \rangle ^{F(X_\alpha)} = \ker(\psi_\alpha) \). There is a homomorphism \( \psi : F(\cup X_\alpha) \to H \) such that \( \psi|_{X_\alpha} = \psi_{alpha} \). Since \( \langle \cup R_\alpha \rangle ^{F(\cup X_\alpha)} = \ker(\psi) \), then \(\psi\) induces a homomorphism \(f:G\to H\) with \( \psi = f\circ \varphi \).
+\end{prf}
 
 \end{document}
