@@ -1,0 +1,96 @@
+\documentclass[twoside]{report}
+
+% Package Import
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage[paperwidth=5.5in,paperheight=7.5in,margin=.5in]{geometry}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{mdframed}
+  \mdfdefinestyle{prf}{
+    topline=false,
+    bottomline=false,
+    rightline=false,
+    innertopmargin=1ex,
+    skipabove=0pt}
+\usepackage{fancyhdr}
+  \setlength{\headheight}{.5in}
+  \setlength{\headsep}{2em}
+  \pagestyle{fancy}
+
+% Shortcut Macros
+\newcommand{\done}{$\blacksquare$}
+\newcommand{\hruleskip}{\vspace{1em}\hrule\vspace{2em}}
+\newcommand{\br}{\centering{ * \quad * \quad *} \\  }
+\newcommand{\Ob}{\textrm{Ob}}
+\newcommand{\Hom}{\textrm{Hom}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\fanC}{\mathscr{C}}
+\newcommand{\fanD}{\mathscr{D}}
+
+% Lecture Headers
+\newcounter{Lecture}
+\newcommand{\newLec}[1]{
+  \stepcounter{Lecture}
+  \noindent{\Large\bf Lecture \arabic{Lecture}} \, #1 \hfill  \rule[1ex]{2.5in}{.1pt} \vspace{1em}
+}
+
+% Theorem Stuff
+\newtheoremstyle{myts}
+  {1pt} % Space above
+  {1em} % Space below
+  {} % Body font
+  {0pt} % Indent size
+  {\bf} % Head font
+  {} % headpunc
+  { } % headspace
+  {\thmname{#1}\thmnumber{#2}} % headspec
+\theoremstyle{myts}
+\newcounter{c}[Lecture]
+\newtheorem{dfn}[c]{Definition \arabic{Lecture}.}
+\newtheorem{thm}[c]{Theorem \arabic{Lecture}.}
+\newtheorem{lma}[c]{Lemma \arabic{Lecture}.}
+\newtheorem{cor}[c]{Corollary \arabic{Lecture}.}
+\newtheorem*{epl}{Example}
+\newtheorem*{nte}{Note}
+\newcounter{ex}[Lecture]
+\newtheorem{exc}[ex]{Exercise }
+
+% Proof Environment
+\newenvironment{prf}{
+  \noindent\begin{mdframed}[style=prf]}{\end{mdframed} \vspace{1em}
+}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  {\it Lecture Notes by Jonathan Alcaraz (UCR)} \\
+  
+  \vfill
+  
+  {\Huge Geometry} \\
+  \vspace{1em}
+  {Math 232A} \\
+  {Fall 2017} \\
+
+  \vfill
+  
+  {Based on Lectures by} \\
+  \vspace{1em}
+  {\Large Dr. Frederick Willhelm} \\
+  {\it University of California, Riverside}
+  
+  \vfill
+\end{titlepage}
+\setcounter{page}{1}
+
+\lhead[\thepage]{Alcaraz}
+\chead[Geometry]{Geometry}
+\rhead[Fall 2017 (Willhelm)]{\thepage}
+
+\end{document}
