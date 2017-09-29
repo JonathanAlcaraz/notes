@@ -31,6 +31,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\fanC}{\mathscr{C}}
 \newcommand{\fanD}{\mathscr{D}}
+\newcommand{\cleanbr}{\vspace{1ex}\noindent}
 
 % Lecture Headers
 \newcounter{Lecture}
@@ -92,5 +93,39 @@
 \lhead[\thepage]{Alcaraz}
 \chead[Geometry]{Geometry}
 \rhead[Fall 2017 (Willhelm)]{\thepage}
+
+\newLec{28 Sep 2017}
+
+\noindent
+{\large\scshape Introduction}
+
+\cleanbr
+  Given a smooth surface \( S \subseteq \R^3 \), we'd like to compare and contrast with \( \R^n\). In doing so, we may ask for analogs to lines, angles, volume, distance, length, et cetera.
+
+\cleanbr
+In fact, we can even consider these analogs in more abstract smooth manifolds. For example:
+\begin{itemize}
+  \item \(\R P^n\)
+  \item the Torus
+  \item the Klein Bottle
+\end{itemize}
+
+\cleanbr
+While these space can be embedded into $\R^n$, we don't usually consider them this way, but rather thin of them abstractly.
+
+\cleanbr
+{\large\scshape Riemannian Manifolds}
+
+\begin{dfn}
+  A \emph{Riemannian Manifold} \( (M, g)\) is a \(C^\infty\)-manifold together with a smoothly varying inner product $g$ on $M$.
+\end{dfn}
+
+\begin{dfn}
+  An \emph{Inner Product} is a map \( \langle \cdot , \cdot \rangle : V \times V \to \R \) that is bilinear, symmetric, and positive definite.
+\end{dfn}
+
+\begin{nte}
+  Really there are inifinitely many inner products in a Riemmanian Manifold since each point has its own tangent space. We sometimes say $g_p$ is the inner product at $p$. We say that $g$ is a \emph{Riemannian metric}, though this shouldn't be confused with standard notions of a metric.
+\end{nte}
 
 \end{document}
