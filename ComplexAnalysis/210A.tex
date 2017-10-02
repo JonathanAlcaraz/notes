@@ -136,4 +136,47 @@
 \begin{thm}
   An open set $G$ is connected if and only if, for every \(a,b\in G\) there is a polygon from $a$ to $b$.
 \end{thm}
+
+\begin{dfn}
+  Given a subset \( A\subseteq \C\), we say \(z\in\C\) is a \emph{limit point} of $A$ if there exists a sequence \(\{a_n\}\) of distinct points in $A$ such that \( z = \lim_{n\to\infty} a_n \).
+\end{dfn}
+
+\begin{cor}
+  A subset $A$ is closed if and only if $A$ contains all of its limit points.
+\end{cor}
+
+\begin{dfn}
+  A subset \(A \subseteq\C\) is \emph{complete} if every Cauchy sequencce in $A$ converges in $A$.
+\end{dfn}
+
+\begin{cor}
+  $A$ is complet if and only if $A$ is closed.
+\end{cor}
+
+\begin{dfn}
+  A subset $A$ of $\C$ is \emph{compact} if every open cover of $A$ has a finite subcover. $A$ is \emph{sequentially compact} if every sequencec in $A$ has a subsequence which converges in $A$. 
+\end{dfn}
+
+\begin{dfn}
+  A set \(A\subseteq\C\) is \emph{totally bounded} if for every \(\varepsilon > 0\) there exists \( a_1, \ldots, a_n \in A \) such that \( A\subseteq \bigcup_{i=1}^n B(a_i, \varepsilon)\). 
+\end{dfn}
+
+\begin{thm}
+  The following are equivalent:
+  \begin{enumerate}[(i)]
+    \item $A$ is compact;
+    \item Every infinie set in $A$ has limit point in $A$;
+    \item $A$ is sequentially compact;
+    \item $A$ is complete and totally bounded.
+  \end{enumerate}
+\end{thm}
+
+\begin{cor}
+  $A$ is compact if and only if $A$ is closed and bounded.
+\end{cor}
+
+\newLec{2 Oct 2017}
+
+
+
 \end{document}
