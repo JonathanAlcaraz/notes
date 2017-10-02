@@ -31,6 +31,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\fanC}{\mathscr{C}}
 \newcommand{\fanD}{\mathscr{D}}
+\newcommand{\cleanbr}{\vspace{1em}\noindent}
 
 % Lecture Headers
 \newcounter{Lecture}
@@ -73,7 +74,7 @@
   
   \vfill
   
-  {\Huge Topology} \\
+  {\Huge Complex Analysis} \\
   \vspace{1em}
   {Math 210A} \\
   {Fall 2017} \\
@@ -86,6 +87,8 @@
   {\it University of California, Riverside}
   
   \vfill
+
+  {\tiny last updated \today}
 \end{titlepage}
 \setcounter{page}{1}
 
@@ -95,6 +98,42 @@
 
 \newLec{29 Sep 2017}
 
+\cleanbr
+{\large\scshape The Topology of the Complex Plane}
 
+\cleanbr
+\begin{dfn}
+  Given $a\in\C$, $r>0$, define an \emph{open ball} by
+  \[
+    B(a,r) = \{ z\in\C : |z-a| < r \}
+  \]
+  and a \emph{closed ball} by
+  \[
+    \overline{B}(a,r) = \{ z\in\C : |z-a| \leq r \}
+  \]
+\end{dfn}
 
+\begin{dfn}
+  Take sets \( A\subseteq G\subseteq \C \). $A$ is said to be \emph{open in $G$} if for any \(a\in A\), there is some \(r>0\) such that \(B(a,r)\bigcap G\subseteq A\). $A$ is said to be \emph{closed in $G$} if \(G \backslash A\) is open in $G$.
+\end{dfn}
+
+\begin{dfn}
+  A subset \(G \subseteq \C\) is said to be \emph{connected} if it has either of the following properties:
+  \begin{itemize}
+    \item If \( G = A\bigcup B\) where $A$, $B$ are open and disjoint, the \(A = \emptyset\) or \( B = \emptyset \).
+    \item If \( A \subseteq G\) is both open in $G$ and closed in $G$, then \( A = \emptyset \) or \( A = G \).
+  \end{itemize}
+\end{dfn}
+
+\begin{dfn}
+  A \emph{segment} between complex numbers $z$ and $w$, denoted \( [z,w] \) is the set \( \{ tw + (1-t)z : t\in [0,1] \} \).
+\end{dfn}
+
+\begin{dfn}
+  A \emph{polygon} from $a$ to $b$ is a set \( [a,z_1] \cup [z_1,z_2] \cup \cdots \cup [z_n,b] \).
+\end{dfn}
+
+\begin{thm}
+  An open set $G$ is connected if and only if, for every \(a,b\in G\) there is a polygon from $a$ to $b$.
+\end{thm}
 \end{document}
