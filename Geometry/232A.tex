@@ -32,6 +32,7 @@
 \newcommand{\fanC}{\mathscr{C}}
 \newcommand{\fanD}{\mathscr{D}}
 \newcommand{\cleanbr}{\vspace{1ex}\noindent}
+\newcommand{\ang}{\sphericalangle}
 
 % Lecture Headers
 \newcounter{Lecture}
@@ -129,5 +130,54 @@ While these space can be embedded into $\R^n$, we don't usually consider them th
 \begin{nte}
   Really there are inifinitely many inner products in a Riemmanian Manifold since each point has its own tangent space. We sometimes say $g_p$ is the inner product at $p$. We say that $g$ is a \emph{Riemannian metric}, though this shouldn't be confused with standard notions of a metric.
 \end{nte}
+
+\begin{dfn}
+  Define the \emph{angle} between two points \(v,w\in T_pM\) for some \(p\in M\) by
+  \[
+    \ang(v,w) = \cos^{-1} \left( \frac{g_p(v,w)}{\| v\| \| w\|}\right)
+  \]
+  where \(\|v\|^2 := g_p(v,v) \).
+\end{dfn}
+
+\cleanbr
+In Euclidean space, given a path \( c: [a,b] \to \R^n \), one can define the  length of $c$ by
+\[
+  len(c) = \int_a^b \| c' \| dt
+\]
+
+\begin{dfn}
+In general Riemannian Manifolds, we can similarly define the \emph{length} of a path \(\tilde{c} : [a,b] \to M \) by
+\[
+  len(c) = \int_a^b \sqrt{g(\tilde{c}', \tilde{c}')} dt
+\]
+\end{dfn}
+
+\cleanbr
+In Euclidean space, we have the concept of distance between points $p$ and $q$ defined by \(dist(p,q) = len(c) \) where $c$ is the unique line segment conecting $p$ and $q$. However, in an abstract manifold, there may not be such a shortest path.
+
+\begin{dfn}
+  Given points $p$ and $q$ in a Riemannian Manifold $M$, the \emph{distance} is defined by
+  \[
+    dist(p,q) = \inf\{len(c) : c \textrm{ piece wise smooth between p and q} \}
+  \]
+\end{dfn}
+
+\begin{epl}
+  \cleanbr
+  \begin{enumerate}
+    \item \(T\R^n = \R^n \times \R^n\) with \(g((x,v),(x,w))= vw\)
+    \item Any real inner product space.
+  \end{enumerate}
+\end{epl}
+
+\begin{dfn}
+  \(f:(M,g)\to (N,h)\) is said to be an \emph{isometry} is $f$ is a diffeomorphism and \(f^{\star} (h) = g\) that is \( g(x,y) = h(df(x), df(y))\).
+\end{dfn}
+
+\begin{nte}
+  Given any Riemannian Manifold \( (M,g) \), \( T_p M\) is an $n$-dimensional vector space, hence \( (T_pM, g_p) \) is isometric to \( (\R^n, can)\)
+\end{nte}
+
+\newLec{3 Oct 2017}
 
 \end{document}
