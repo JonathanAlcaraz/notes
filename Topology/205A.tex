@@ -98,4 +98,54 @@
 
 \newLec{28 Sep 2017}
 
+\cleanbr
+{\large\scshape Introduction}
+
+\cleanbr
+This course is about the abstraction of continuity.
+
+\cleanbr
+A subset \(O\subseteq\R\) is said to be \emph{open} if for every point \(x\in O\), there is a value \(\varepsilon > 0\) such that \( B(x,\varepsilon) \subseteq O \).
+
+\cleanbr
+This idea of openness in Euclidean space can be used to define continuity of functions on Euclidean space.
+
+\cleanbr
+A function \(f:\R^n \to \R\) is \emph{continuous} if for any open \(O\subseteq\R\), \(f^{-1}(O)\) is open in $\R^n$.
+
+\cleanbr
+One could prove that this definition is equivalet to the standard $\varepsilon$-$\delta$ definition of continuity on Euclidean space.
+
+\cleanbr
+{\large\scshape Point-Set Topology}
+
+\begin{dfn}
+  Let $X$ be a set. A collection $\mathcal{T}$ of subsets of $X$ is called a \emph{topology} on $X$ if
+  \begin{enumerate}[(i)]
+    \item $\emptyset$ and $X$ are in $\mathcal{T}$;
+    \item Any union of elements of $\mathcal{T}$ is in $\mathcal{T}$;
+    \item The intersection of finitely many elements of $\mathcal{T}$ is in $\mathcal{T}$.
+  \end{enumerate}
+  A set together with a topology $\mathcal{T}$ is called a \emph{topological space} denoted \( (X,\mathcal{T}) \) (or just $X$ if the topology is understood). Elements of $\mathcal{T}$ are said to be \emph{open sets in $X$}.
+\end{dfn}
+
+\begin{epl}
+  \cleanbr
+  \begin{itemize}
+    \item The \emph{discrete topology} on a set is simply the collection of all subsets.
+    \item The \emph{indisccrete topology} on a set $X$ is the most trivial topolgy, \(\{\emptyset, X\}\).
+  \end{itemize}
+\end{epl}
+
+\begin{dfn}
+  If \(\mathcal{T}_1\) and \(\mathcal{T}_2\) are topologies on the same set with the property \( \mathcal{T}_1 \subseteq \mathcal{T}_2 \), then \(\mathcal{T}_2\) is said to be \emph{finer} than \(\mathcal{T}_1\). If neither \( \mathcal{T}_1 \subseteq \mathcal{T}_2 \) nor \( \mathcal{T}_2 \subseteq \mathcal{T}_1 \), these topologies are said to be \emph{incomparable}.
+\end{dfn}
+
+\begin{dfn}
+  A function \( f : (X,\mathcal{T}) \to (Y,\mathcal{T}') \) is called \emph{continuous} if \(f^{-1}(V) \in \mathcal{T}\) for every \(V\in\mathcal{T}'\), that is, the preimage of open sets are open. A \emph{homeomorphism} is a bijective continuous funcction whose inverse is continuous.
+\end{dfn}
+
+\cleanbr
+{\bf The Fundamental Question of Topology}  Given two topological spaces, determine if they are homeomorphic.
+
 \end{document}
