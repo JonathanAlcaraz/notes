@@ -177,6 +177,59 @@
 
 \newLec{2 Oct 2017}
 
+\begin{thm}
+  Let \(A\subseteq\C\) and \( f : A \to \C \) be a continuous function. If $A$ is a compact (resp. connected), then \(f(A)\) is compact (resp. connected). Moreover, if $A$ is compact, then \(f(A)\)  is bounded and attains its bounds.
+\end{thm}
+
+\begin{dfn}
+  A fuunction \( f: A\to \C\) is said to be \emph{uniformly continuous} if for every \(\varepsilon >0\), there is a \(\delta > 0 \) such that  \( |f(z) - f(w)| < \varepsilon | \) whenever \( | z-w | < \delta \).
+\end{dfn}
+
+\begin{nte}
+  Uniform continuity implies standard pointwise continuity, but the converse need not be true. However, the converse is true when $A$ is compact.
+\end{nte}
+
+\begin{dfn}
+  Let \( f: A\to\C \) and \( f_n: A\to\C \) be functions. We say the sequence \(\{f_n\}\) \emph{converges uniformly} to $f$ is for every \( \varepsilon > 0 \), there is some $N$ such that every \(n\geq N\) has the property \( |f_n(z) -f(z) | < \varepsilon \) for every \(z\in A\).
+\end{dfn}
+
+\begin{thm}
+  If $f_n$ converges uniformly to $f$ on $A$, and $f_n$ are continuous, then $f$ is continuous.
+\end{thm}
+
+\begin{prf}
+  Fix \( a\in A\). We want to show that $f$ is continuous at $a$. Let \(\varepsilon > 0 \). There is $n$ sufficiently large so that \( | f(z) - f_n(z) | < \frac{\varepsilon}{3} \) for any \( z\in \C \). Moreover, since $f_n$ continuous, there is a $\delta > 0$ such that \( | f_n(z) - f_n(a) | < \frac{\varepsilon}{3} \) whenever \( | z-a | < \delta \). So if \( |z-a| < \delta \), then
+  \[
+    |f(z) - f(a) | \leq |f(z) - f_n(z)| + |f_n(z) - f_n(a) | + | f_n(a) - f(a) | < \varepsilon
+  \]
+\end{prf}
+
+\begin{dfn}
+  Let \( u_n : A \to \C \) be a sequence of functions and define \( f = \sum_{n=1}^\infty u_n \) by
+  \[
+    f(z) = \lim_{N\to\infty} \sum_{n=1}^N u_n(z)
+  \]
+  We say \(\sum_{n=1}^\infty u_n \) \emph{converges uniformly} if the partial sums \( \sum_{n=1}^N u_n \)  converge uniformly in the aforementioned sense. 
+\end{dfn}
+
+\begin{thm}
+  ({\scshape Weirstrass M-test}) Let \(A\subseteq\C\) and \( u_n : A \to \C \). Suppose there are numbers \( \{ M_n \} \) such that \(  | u_n(z) | \leq M_n \) for every \(z\in A\) and every $n$. If \( \sum_{n=1}^\infty M_n \), then \( \sum_{n=1}^\infty \) converges uniformly.
+\end{thm}
+
+\begin{prf}
+  Define $f_N$ to be the $N$th partial sum of $u_n$. Since
+  \begin{align*}
+    | f_n(z) - f_m(z) | &\leq |u_{m+1}(z)| + \cdots + |u_{n}(z)| \\
+      &\leq M_{m+1} + \cdots + M_{n}
+  \end{align*}
+  Since \(\sum M_n\) converges, the RHS can be made arbitrarily small for sufficiently large $m,n$, $f_n$ is pointwise Cauchy and hencce converges pointwise. Define $f$ to be the pointwise limit of $f_n$. So,
+  \begin{align*}
+    | f(z) - f_n(z) | &= | u_{n+1}(z) + u_{n+2} + \cdots | \\
+      &\leq M_{n+1} + M_{n+2} + \cdots
+  \end{align*}
+  Again, since $M_n$ converges, this can be made arbitrarilly small. 
+\end{prf}
+
 
 
 \end{document}
