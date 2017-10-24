@@ -227,9 +227,108 @@
     | f(z) - f_n(z) | &= | u_{n+1}(z) + u_{n+2} + \cdots | \\
       &\leq M_{n+1} + M_{n+2} + \cdots
   \end{align*}
-  Again, since $M_n$ converges, this can be made arbitrarily small. 
+  Again, since $M_n$ converges, this can be made arbitrarilly small. 
 \end{prf}
 
+\newLec{4 Oct 2017}
 
+\cleanbr
+{\scshape Power Series}
+
+\begin{dfn}
+  Let \(a_n \in \C \) We say the series \( \sum_{n=0}^\infty a_n \) \emph{converges} to \(z\in\C\) if for every \(\varepsilon > 0\), there is an $N$ such that for every \(m\geq N\), \( \left| \sum_{n=0}^m a_n - z \right| < \varepsilon \). We say the series \emph{converges absolutely} if \( \sum_{n=0}^\infty |a_n|\) converges. If a series does not converge, we say the series \emph{diverges}.
+\end{dfn}
+
+\begin{lma}
+  Absolute converges implies convergence.
+\end{lma}
+
+\begin{prf}
+  Define \(z_n\) to be the $n$-th partial sum of \(\{a_n\}\). If \(m>k\), then
+  \begin{align*}
+    | z_m - z_k | &= | a_{k+1} + \cdots + a_m | \\
+      &\leq |a_{k+1}| + \cdots + |a_m|
+  \end{align*}
+  Since the series is absolutely convergent, then this value can be made arbitrarily small. So \(z_n\) is Cauchy and hence converges.
+\end{prf}
+
+\begin{dfn}
+  A \emph{power series} about $a$ is a series of the form
+  \[
+   \sum_{n=0}^\infty a_n (z-a)^n
+  \]
+\end{dfn}
+
+
+\begin{thm}
+  For any power series \( \sum a_n (z-a)^n \), there is a nonnegative real number $R$ such that:
+  \begin{enumerate}[(1)]
+    \item \( |z-a| < R \) implies the series converges absolutely.
+    \item \( |z-a| > R \) implies the series divverges.
+  \end{enumerate}
+  Moreover, if \(0<r<R\), then the series converges uniformly on \(\overline{B}(a,r)\).
+  The unique $R$ satisfying these properties is called the \emph{radius of convergence} of the power series.
+\end{thm}
+
+\begin{prf}
+  Recall the \emph{limit supremum} of a sequence defined by
+  \[
+    \limsup a_n = \lim_{n\to\infty} \left( \sup \{ a_m : m\geq n \} \right)
+  \]
+  We need only consider the case where \( a = 0 \). Define $R$ implicitly by
+  \[
+    \frac{1}{R} = \limsup |a_n|^{1/n}
+  \]
+  Suppose \( |z| < R \) and choose $r$ so that \( |z| < r < R \). Since \(\frac{1}{r} > \frac{1}{R} \), there exists $N$ such that for every \(n\geq N\), \( |a_n|^{\frac{1}{n}} < \frac{1}{r} \). So,
+  \[
+      \sum_{n=N}^\infty |a_n z^n| = \sum_{n=N}^\infty \left| (a_n^{\frac{1}{n}})^n \right| \, |z^n| < \sum_{n=N}^\infty \left( \frac{|z|}{r} \right)^n
+  \]
+  Since \( |z| < r \), this is a convergent geometric series. This proves (1).
+  
+  \noindent
+  Suppose \( |z| > R \). Choose $r$ so that \(R<r<|z|\). Then \(\frac{1}{r} < \frac{1}{R} \), so there are infinitely many $n$ such that \( \frac{1}{r} < |a_n|^{\frac{1}{n}}\). Therefore the sequence \( |a_n z^n| > \left( \frac{|z|}{r} \right)^n \) diverges and hence the corresponding series diverges.
+
+  \noindent
+  Suppose \(0 < r < R\). Choose $\rho$ such that \( r < \rho < R \). So there exists $N$ such that for every \(n\geq N\), \( |z| ^{\frac{1}{n}} < \frac{1}{\rho} \). Therefore \(n\geq N\), \( |z| \leq r \) so \( |a_n z^n| \leq \left( \frac{r}{\rho} \right)^n \). So by the Weirstrass $M$-test, the series converges uniformly. 
+\end{prf}
+
+\begin{thm}
+  If \( \lim \left| \frac{a_n}{a_{n+1}} \right| \) exists, then \( R = \lim \left| \frac{a_n}{a_{n+1}} \right| \)
+\end{thm}
+
+\begin{prf}
+  Again, we may assume that \(a=0\). Let \( a = \lim \left| \frac{a_n}{a_{n+1}} \right| \). If \( |z| < r < a \), then there is some \(N\) such that for every \( n\geq N\), \( r < \left| \frac{a_n}{a_{n+1}} \right| \). Let \( B = \left| a_N \, r^N \right| \). Then
+  \[
+    B > \left| a_{N+1} \, r^{N+1} \right| > \cdots
+  \]
+  Hence, if \(n\geq N\), then 
+  \[
+    \left| a_n z^n \right| = \left| a_n z^n \right| \, \left| \frac{z^n}{r^n} \right| \leq B \left| \frac{z}{r} \right|^n
+  \]
+  
+  \noindent
+  Similarly, if \( |z| > r > a \), then there exists $N$ such that for every \( n\geq N \), \( \left| \frac{a_n}{a_{n+1}} \right| < r \). Let \(B = \left| a_N r^N \right| \). Then
+  \[
+    B = \left| a_N r^N \right| < \left| a_{N+1} \right| < \cdots
+  \]
+  So, if \(n\geq N\), then 
+  \[
+    \left| a_n z^n \right| = \left| a_n z^n \right| \, \left| \frac{z^n}{r^n} \right| \geq B \left| \frac{z}{r} \right|^n
+  \]
+\end{prf}
+
+\begin{epl}
+  Consider
+  \[
+    \sum_{n=0}^{\infty} \frac{z^n}{n!}
+  \]
+  The radius of convergence is \(\lim \left| \frac{n+1}{n} \right| = \infty \).
+
+  \noindent
+  Since this power series converges for any complex number, it defines a well-defined function called the \emph{exponential function} denoted:
+  \[
+    \exp (z) := e^z := \sum_{n=0}^{\infty} \frac{z^n}{n!}
+  \]
+\end{epl}
 
 \end{document}
